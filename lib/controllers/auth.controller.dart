@@ -14,7 +14,7 @@ abstract class _AuthControllerBase with Store {
   AuthService _authService = GetIt.I.get<AuthService>();
 
   @observable
-  AuthenticateUser authenticateUser;
+  AuthenticateUser authenticateUser = AuthenticateUser();
 
   @action
   Future<void> registerWithEmailAndPassword() async {

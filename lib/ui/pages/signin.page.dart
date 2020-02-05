@@ -2,6 +2,7 @@ import 'package:app_post/controllers/auth.controller.dart';
 import 'package:app_post/ui/pages/signup.page.dart';
 import 'package:app_post/ui/widgets/shared/input-text-form.widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 
@@ -10,13 +11,13 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: loginForm(),
+        child: loginForm(context),
       ),
     );
   }
 }
 
-Widget loginForm() {
+Widget loginForm(BuildContext context) {
   AuthController authController = GetIt.I.get<AuthController>();
 
   return SingleChildScrollView(
@@ -54,24 +55,32 @@ Widget loginForm() {
           SizedBox(
             height: 20,
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.blueAccent, //Color(0xff6092ff),
-              borderRadius: BorderRadius.all(
-                Radius.circular(100),
-              ),
-            ),
-            child: FlatButton(
-              child: Text(
-                "ENTRAR",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
+          Observer(
+            builder: (_) {
+              return Container(
+                decoration: BoxDecoration(
+                  color: authController.authenticateUser.formIsValid
+                      ? Colors.blueAccent
+                      : Theme.of(context).primaryColorLight,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(100),
+                  ),
                 ),
-              ),
-              onPressed: authController.signIn,
-            ),
+                child: FlatButton(
+                  child: Text(
+                    "ENTRAR",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  onPressed: authController.authenticateUser.formIsValid
+                      ? authController.signIn
+                      : null,
+                ),
+              );
+            },
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
