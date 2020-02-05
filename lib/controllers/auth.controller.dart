@@ -2,19 +2,19 @@ import 'package:app_post/models/user/authenticate-user.model.dart';
 import 'package:app_post/services/auth.service.dart';
 import 'package:app_post/services/exceptions/auth-exception.service.dart';
 import 'package:app_post/services/message.service.dart';
-import 'package:app_post/ui/pages/home.page.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 part 'auth.controller.g.dart';
 
 class AuthController = _AuthControllerBase with _$AuthController;
 
 abstract class _AuthControllerBase with Store {
-  AuthService _authService = AuthService();
+  AuthService _authService = GetIt.I.get<AuthService>();
 
   @observable
-  AuthenticateUser authenticateUser = AuthenticateUser();
+  AuthenticateUser authenticateUser;
 
   @action
   Future<void> registerWithEmailAndPassword() async {

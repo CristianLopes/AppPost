@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'upload-post.mode.dart';
+part of 'upload-post.model.dart';
 
 // **************************************************************************
 // StoreGenerator

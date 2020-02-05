@@ -1,6 +1,6 @@
 import 'package:app_post/models/user/user.model.dart';
 import 'package:mobx/mobx.dart';
-part 'upload-post.mode.g.dart';
+part 'upload-post.model.g.dart';
 
 class UploadPost = _UploadPostBase with _$UploadPost;
 

@@ -1,6 +1,7 @@
 import 'package:app_post/models/user/user.model.dart';
 import 'package:app_post/services/auth.service.dart';
 import 'package:app_post/services/ioc.service.dart';
+import 'package:app_post/ui/pages/upload-post.page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';

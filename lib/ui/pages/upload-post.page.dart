@@ -1,5 +1,5 @@
 import 'package:app_post/controllers/post/upload-post.controller.dart';
-import 'package:app_post/models/post/upload-post.mode.dart';
+import 'package:app_post/models/post/upload-post.model.dart';
 import 'package:app_post/models/user/user.model.dart';
 import 'package:app_post/utils/string-utility.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,6 @@ class UploadPostPage extends StatelessWidget {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
   UploadPostPage({UploadPost post}) {
-    print(postController.uploadPost);
     if (post != null) {
       postController.uploadPost = post ?? UploadPost();
       titleController.text = post.title;

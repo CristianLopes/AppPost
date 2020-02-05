@@ -1,4 +1,4 @@
-import 'package:app_post/models/post/upload-post.mode.dart';
+import 'package:app_post/models/post/upload-post.model.dart';
 import 'package:app_post/models/user/user.model.dart';
 import 'package:app_post/services/message.service.dart';
 import 'package:app_post/services/post.service.dart';
@@ -16,7 +16,7 @@ abstract class _UploadPostControllerBase with Store {
   PostService _postService = GetIt.I.get<PostService>();
 
   @observable
-  UploadPost uploadPost;
+  UploadPost uploadPost = UploadPost();
 
   @action
   publish(User user) {

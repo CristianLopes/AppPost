@@ -1,5 +1,5 @@
 import 'package:app_post/models/post.model.dart';
-import 'package:app_post/models/post/upload-post.mode.dart';
+import 'package:app_post/models/post/upload-post.model.dart';
 import 'package:app_post/repositories/post.repository.dart';
 import 'package:mobx/mobx.dart';
 
