@@ -18,15 +18,19 @@ class PostItemContent extends StatelessWidget {
                 post.title,
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 22,
+                  fontSize: 18,
                 ),
               ),
             ),
-            Text(
-              post.body,
-              style: TextStyle(
-                fontWeight: FontWeight.w300,
-                fontSize: 16,
+            Expanded(
+              child: SingleChildScrollView(
+                child: Text(
+                  post.body,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontSize: 16,
+                  ),
+                ),
               ),
             ),
           ],
