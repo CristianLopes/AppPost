@@ -1,0 +1,1 @@
+enum UnAuthenticatedOptions { signIn, signUp }

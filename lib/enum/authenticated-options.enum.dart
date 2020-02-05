@@ -1,0 +1,1 @@
+enum AuthenticatedOptions { profile, logOut }

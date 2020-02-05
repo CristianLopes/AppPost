@@ -1,0 +1,12 @@
+class AuthExceptionTypes {
+  static const String ERROR_INVALID_EMAIL = "ERROR_INVALID_EMAIL";
+  static const String ERROR_WRONG_PASSWORD = "ERROR_WRONG_PASSWORD";
+  static const String ERROR_USER_NOT_FOUND = "ERROR_USER_NOT_FOUND";
+  static const String ERROR_USER_DISABLED = "ERROR_USER_DISABLED";
+  static const String ERROR_TOO_MANY_REQUESTS = "ERROR_TOO_MANY_REQUESTS";
+  static const String ERROR_OPERATION_NOT_ALLOWED =
+      "ERROR_OPERATION_NOT_ALLOWED";
+
+  static const String ERROR_WEAK_PASSWORD = "ERROR_WEAK_PASSWORD";
+  static const String ERROR_EMAIL_ALREADY_IN_USE = "ERROR_EMAIL_ALREADY_IN_USE";
+}
