@@ -16,8 +16,11 @@ abstract class _HomeControllerBase with Store {
   PostService _postService = GetIt.I.get<PostService>();
   bool get isAuthenticated => _authService.authState == AuthState.LOGGED_IN;
 
+  ObservableStream<List<Post>> posts;
+
   ObservableStream<List<Post>> listOfPosts() {
-    return _postService.getList();
+    posts = _postService.getList();
+    return posts;
   }
 
   @action

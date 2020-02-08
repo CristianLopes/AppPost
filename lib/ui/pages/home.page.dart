@@ -7,6 +7,7 @@ import 'package:app_post/ui/pages/upload-post.page.dart';
 import 'package:app_post/ui/widgets/post/post-item.widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
@@ -124,43 +125,29 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          child: StreamBuilder<QuerySnapshot>(
-            stream: Firestore.instance.collection('posts').snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
+          child: Observer(
+            builder: (_) {
+              if (homeController.posts.data == null) {
+                return Center(child: CircularProgressIndicator());
               }
-              switch (snapshot.connectionState) {
-                case ConnectionState.waiting:
-                  return CircularProgressIndicator();
-                default:
-                  return Container(
-                    height: 500,
-                    child: ListView(
-                      children: snapshot.data.documents
-                          .map((DocumentSnapshot document) {
-                        if (document.data == null) {
-                          return ListTile(
-                            title: Text("documento nulo"),
-                            subtitle: Text("documento nulo"),
-                          );
-                        } else {
-                          return Column(
-                            children: <Widget>[
-                              PostItem(
-                                Post.fromMap(document),
-                              ),
-                              Divider(
-                                height: 10,
-                              ),
-                            ],
-                          );
-                        }
-                      }).toList(),
-                    ),
+
+              return ListView.builder(
+                itemCount: homeController.posts.data,
+                itemBuilder: (_, index) {
+                  print(homeController.posts.data[index]);
+                  var post = Post.fromMap(homeController.posts.data[index]);
+                  return Column(
+                    children: <Widget>[
+                      PostItem(
+                        post,
+                      ),
+                      Divider(
+                        height: 10,
+                      ),
+                    ],
                   );
-              }
+                },
+              );
             },
           ),
         ),
@@ -168,3 +155,43 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+//  StreamBuilder<QuerySnapshot>(
+//         stream: Firestore.instance.collection('posts').snapshots(),
+//         builder:
+//             (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+//           if (snapshot.hasError) {
+//             return Text('Error: ${snapshot.error}');
+//           }
+//           switch (snapshot.connectionState) {
+//             case ConnectionState.waiting:
+//               return Center(child: CircularProgressIndicator());
+//             default:
+//               return Container(
+//                 height: 500,
+//                 child: ListView(
+//                   children: snapshot.data.documents
+//                       .map((DocumentSnapshot document) {
+//                     if (document.data == null) {
+//                       return ListTile(
+//                         title: Text("documento nulo"),
+//                         subtitle: Text("documento nulo"),
+//                       );
+//                     } else {
+//                       return Column(
+//                         children: <Widget>[
+//                           PostItem(
+//                             Post.fromMap(document),
+//                           ),
+//                           Divider(
+//                             height: 10,
+//                           ),
+//                         ],
+//                       );
+//                     }
+//                   }).toList(),
+//                 ),
+//               );
+//           }
+//         },
+//       ),
