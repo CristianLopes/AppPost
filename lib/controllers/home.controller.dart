@@ -18,6 +18,10 @@ abstract class _HomeControllerBase with Store {
 
   ObservableStream<List<Post>> posts;
 
+  _HomeControllerBase() {
+    listOfPosts();
+  }
+
   ObservableStream<List<Post>> listOfPosts() {
     posts = _postService.getList();
     return posts;

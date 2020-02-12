@@ -18,11 +18,15 @@ class PostRepository {
 
   //read list post
   ObservableStream<List<Post>> get posts {
-    var data = _collection.snapshots().map(
+    var data = _collection
+        .orderBy("updateddate", descending: true)
+        .snapshots()
+        .map(
           (query) => query.documents
               .map<Post>((document) => Post.fromMap(document))
               .toList(),
-        );
+        )
+        .asObservable();
 
     return data;
   }
